@@ -25,6 +25,29 @@
  * Domain Path:       /languages
  */
 
+ // Our custom post type function for Photo Arcade Plugin
+function pa_create_post_type(){
+
+    register_post_type(
+        'photo-arcade',
+        // CPT Options
+        array(
+            'labels' => array(
+                'name' => __('Photo Arcade'),
+                'singular_name' => __('Photo')
+            ),
+            
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'photo-arcade'),
+            'show_in_rest' => true,
+            'menu_icon' => 'dashicons-format-gallery',
+        )
+    );
+}
+
+add_action('init', 'pa_create_post_type');
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
